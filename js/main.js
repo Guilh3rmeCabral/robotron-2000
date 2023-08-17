@@ -1,9 +1,19 @@
-const robotron = document.querySelector('#robotron');
+const controleAjuste = document.querySelectorAll('[data-controle]');
 
-robotron.addEventListener('click',(evento) => {
-    console.log(evento)
-});
+controleAjuste.forEach( (elemento) => {
+    elemento.addEventListener('click', (evento) => {
+        manipulaDados(evento.target.dataSet.controle, evento.target.parentNode)
+    })
+})
 
-function dizOi() {
-    console.log('oi')
+
+function manipulaDados(operacao, controle) {
+    const peca = controle.querySelector('[data-contador]');
+    if(operacao === "-") {
+        if(peca.value >= 1) {
+            peca.value = parseInt(peca.value) - 1;
+        }
+    } else {
+        peca.value = parseInt(peca.value) + 1;
+    }
 }
